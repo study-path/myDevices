@@ -24,7 +24,7 @@ export class DeviceListComponent implements OnInit {
     {
       id: 3,
       name: "Device 3",
-      status: DeviceStatusEnum.Available
+      status: DeviceStatusEnum.Offline
     },
     {
       id: 4,
