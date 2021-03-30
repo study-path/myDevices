@@ -1,1 +1,12 @@
-<p>Device name is {{device.name}}</p>
+<mat-card fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between none">
+  <span class="material-icons">
+    stay_primary_portrait
+  </span>
+  <div fxFlex>
+    <div>Name {{device.name}}</div>
+    <div>Status: {{device.status}}</div>
+  </div>
+  <span class="material-icons">
+    info
+  </span>
+</mat-card>

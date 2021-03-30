@@ -12,13 +12,13 @@ export class DeviceListComponent implements OnInit {
 
   devices: DeviceModel[] = [
     {
-      id: 1,
-      name: "Device 1",
+      id: 1,      
+      name: "Device 1 Device 1 Device 1 Device 1 Device 1Device 1Device 1Device 1Device 1Device 1Device 1",
       status: DeviceStatusEnum.Available
     },
     {
       id: 2,
-      name: "Device 2",
+      name: "Device 222222222222222222 ",
       status: DeviceStatusEnum.Restarting
     },
     {
