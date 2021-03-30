@@ -1,0 +1,8 @@
+@import 'src/styles/colors';
+@import 'src/styles/constants';
+
+:host{
+  height: 30px;
+  background-color: #848181; 
+  padding: $content-padding;
+}

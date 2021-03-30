@@ -1,0 +1,3 @@
+<a *ngFor="let device of devices" routerLink="/devices/{{device.id}}/details" routerLinkActive="active">
+  <app-device-item [device]="device"></app-device-item>
+</a>
