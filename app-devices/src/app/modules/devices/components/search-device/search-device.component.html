@@ -3,7 +3,7 @@
     <span class="material-icons">
       search
     </span>
-    <input type="text" placeholder="Search">
+    <input type="text" [(ngModel)]="search" placeholder="Search">
   </div>
-  <button mat-button>Cancel</button>
+  <button mat-button (click)="cancel()">Cancel</button>
 </div>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DeviceModel } from 'src/app/modules/models/device-model';
+import { DeviceModel } from '@models/device.model';
 
 @Component({
   selector: 'app-device-item',
