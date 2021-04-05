@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DeviceModel } from '@models/device.model';
 import { DevicesService } from '@services/devices/devices.service';
-import { DeviceStatusEnum } from 'src/app/shared/models/device-status.enum';
+import { DeviceStatusEnum } from 'src/app/shared/enum/device-status.enum';
 
 @Component({
   selector: 'app-problem-devices-widget',

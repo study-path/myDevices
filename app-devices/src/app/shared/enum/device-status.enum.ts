@@ -1,6 +1,8 @@
 export enum DeviceStatusEnum{
-  Available = "Available",
+  Online = "Online",
   Offline = "Offline",
   Restarting = "Restarting",
-  Maintenance = "Maintenance"
+  Maintenance = "Maintenance",
+  EE="Ee",
+  TT="Tt"
 }

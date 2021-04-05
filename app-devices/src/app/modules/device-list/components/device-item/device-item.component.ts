@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DeviceModel } from '@models/device.model';
+import { deviceStatusToColors } from 'src/app/shared/const/device-status-to-colors.const';
 
 @Component({
   selector: 'app-device-item',
@@ -16,4 +17,9 @@ export class DeviceItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getBackgroundStyle(): any {
+    return {
+      "background-color": deviceStatusToColors.get(this.device.status),
+    };
+  }
 }

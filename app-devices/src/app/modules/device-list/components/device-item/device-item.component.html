@@ -4,9 +4,10 @@
   </span>
   <div fxFlex>
     <div>Name {{device.name}}</div>
-    <div>Status: {{device.status}}</div>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign=" center">
+      <div>Status: {{device.status}}</div>
+      <div class="dot" [ngStyle]="getBackgroundStyle()"></div>
+    </div>
   </div>
-  <span class="material-icons">
-    info
-  </span>
+  <span class="material-icons">info</span>
 </mat-card>

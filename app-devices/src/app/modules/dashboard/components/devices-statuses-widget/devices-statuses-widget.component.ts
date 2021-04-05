@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { deviceStatusToColors } from 'src/app/shared/const/device-status-to-colors.const';
 import { DeviceStatusModel } from 'src/app/shared/models/device-status.model';
 import { DevicesService } from 'src/app/shared/services/devices/devices.service';
 
@@ -20,19 +21,20 @@ export class DevicesStatusesWidgetComponent implements OnInit {
 
   initPie(devicesStatuses: DeviceStatusModel[]) {
     const data: any = [];
-    debugger;
 
     for(var i = 0; i < devicesStatuses.length; i++){
       let dataItem = {
         value: devicesStatuses[i].count,
-        name: devicesStatuses[i].status
+        name: devicesStatuses[i].status,
+        itemStyle: {
+          color: deviceStatusToColors.get(devicesStatuses[i].status)
+        }
       }
       data.push(dataItem);
     }
     console.log(data);
     this.options = {
-      title: {
-        text: 'Statuses',        
+      title: {               
         left: 'center'
       },
       tooltip: {
@@ -44,7 +46,6 @@ export class DevicesStatusesWidgetComponent implements OnInit {
       },
       series: [
         {
-          name: 'fghfghfgh',
           type: 'pie',
           radius: '50%',
           data:  data,

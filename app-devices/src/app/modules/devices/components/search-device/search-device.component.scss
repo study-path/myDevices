@@ -1,23 +1,22 @@
 @import 'src/styles/colors';
 
-.search{
+.search {
   background-color: $color-link-water;
   height: 50px;
-  margin: 0 10px;
   padding: 0 10px;
 }
 
-.div{
+.div {
   position: relative;
 }
 
-span{
+span {
   position: absolute;
   margin-left: 5px;
   padding: 9px;
 }
 
-input{
+input {
   padding:5px 30px;
   width: 100%;
   margin: 5px;
