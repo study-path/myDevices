@@ -1,2 +1,4 @@
-<app-problem-devices-widget></app-problem-devices-widget>
-<app-devices-statuses-widget></app-devices-statuses-widget>
+<app-devices-widget title="Problem devices" class="widget"></app-devices-widget>
+<app-devices-widget title="Restarting devices" [status]="restartingStatus" class="widget"></app-devices-widget>
+<app-devices-widget title="Maintenance devices" [status]="maintenanceStatus" class="widget"></app-devices-widget>
+<app-devices-statuses-widget class="widget"></app-devices-statuses-widget>

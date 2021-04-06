@@ -6,11 +6,12 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { DeviceListModule } from '../device-list/device-list.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DevicesStatusesWidgetComponent } from './components/devices-statuses-widget/devices-statuses-widget.component';
-import { ProblemDevicesWidgetComponent } from './components/problem-devices-widget/problem-devices-widget.component';
+import { DevicesWidgetComponent } from './components/devices-widget/devices-widget.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { WidgetContainerComponent } from './components/widget-container/widget-container.component';
 
 @NgModule({
-  declarations: [DashboardComponent, ProblemDevicesWidgetComponent, DevicesStatusesWidgetComponent],
+  declarations: [DashboardComponent, DevicesWidgetComponent, DevicesStatusesWidgetComponent, WidgetContainerComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
