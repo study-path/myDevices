@@ -4,12 +4,15 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 
 import { DeviceListModule } from '../device-list/device-list.module';
+import { DeviceDetailsComponent } from './components/details-components/device-details/device-details.component';
+import { MobileDetailsComponent } from './components/details-components/mobile-details/mobile-details.component';
 import { DeviceDetailsContainerComponent } from './components/device-details-container/device-details-container.component';
-import { DeviceDetailsComponent } from './components/device-details/device-details.component';
 import { DeviceDetailsRoutingModule } from './device-details-routing.module';
+import { DeviceDetailsDirective } from './directives/device-details.directive';
+import { CompDetailsComponent } from './components/details-components/comp-details/comp-details.component';
 
 @NgModule({
-  declarations: [DeviceDetailsComponent, DeviceDetailsContainerComponent],
+  declarations: [DeviceDetailsContainerComponent, DeviceDetailsComponent, MobileDetailsComponent, DeviceDetailsDirective, CompDetailsComponent],
   imports: [
     CommonModule,
     DeviceDetailsRoutingModule,

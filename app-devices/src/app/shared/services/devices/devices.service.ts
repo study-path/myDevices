@@ -85,10 +85,10 @@ export class DevicesService {
   }
 
   getRelatedDevices(id: number){
-    if(id == 1){
+    if(id == 1 || id == 2 || id == 3){
       return of([
         {
-          id: 1,      
+          id: 1,
           name: "Device 1 Device 1 Device 1 Device 1 Device 1Device 1Device 1Device 1Device 1Device 1Device 1",
           status: DeviceStatusEnum.Online
         },
@@ -98,8 +98,8 @@ export class DevicesService {
           status: DeviceStatusEnum.Restarting
         },      
         {
-          id: 7,
-          name: "Device 7",
+          id: 3,
+          name: "Device 33333333333333333333",
           status: DeviceStatusEnum.Offline
         },
         {
