@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-comp-details',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompDetailsComponent implements OnInit {
 
-  constructor() { }
+  deviceId!: string;
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.deviceId = this.activatedRoute.snapshot.params.id;
+  }
 
   ngOnInit(): void {
   }

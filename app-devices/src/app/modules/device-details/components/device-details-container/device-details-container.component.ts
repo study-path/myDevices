@@ -16,7 +16,6 @@ import { MobileDetailsComponent } from './../details-components/mobile-details/m
 export class DeviceDetailsContainerComponent implements OnInit {
   @ViewChild(DeviceDetailsDirective, {static: true}) qwe!: DeviceDetailsDirective;
   relatedDevices!: DeviceModel[];
-  id!: string;
 
   constructor(private devicesService: DevicesService,
               private activatedRoute: ActivatedRoute,
@@ -24,36 +23,36 @@ export class DeviceDetailsContainerComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(parameters => {     
-      this.id = parameters.id;
-      this.initRelatedDevices(parameters.id);
+      const deviceId = parameters.id;
+      this.loadDeviceComponent(deviceId);
+      this.initRelatedDevices(deviceId);
     }); 
   }
 
-  initRelatedDevices(deviceId: number){
+  initRelatedDevices(deviceId: any): void {
     this.devicesService
       .getRelatedDevices(deviceId)
-      .subscribe((relatedDevices:DeviceModel[]) => 
-      {
-        this.relatedDevices = relatedDevices;
+      .subscribe((relatedDevices:DeviceModel[]) => this.relatedDevices = relatedDevices);
+  }
 
-        const viewContainerRef = this.qwe.viewContainerRef;
-        viewContainerRef.clear();
+  loadDeviceComponent(deviceId: any): void {
+    const viewContainerRef = this.qwe.viewContainerRef;
+    viewContainerRef.clear();
 
-        let component;
-        if (this.id == '1') {
-          component = DeviceDetailsComponent;
-        }
-        else if (this.id == '2') {
-          component = MobileDetailsComponent;
-        }
-        else {
-          component = CompDetailsComponent;
-        }
+    let component;
+    if (deviceId == '1') {
+      component = DeviceDetailsComponent;
+    }
+    else if (deviceId == '2') {
+      component = MobileDetailsComponent;
+    }
+    else {
+      component = CompDetailsComponent;
+    }
 
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
 
-        const componentRef = viewContainerRef.createComponent(componentFactory);
-      });
+    viewContainerRef.createComponent(componentFactory);
   }
 
 }
