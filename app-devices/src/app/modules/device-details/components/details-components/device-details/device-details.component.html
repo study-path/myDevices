@@ -1,12 +1,17 @@
 <mat-card class="example-card">
-  <mat-card-header>
-    <mat-card-title>Details: {{device.name}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      Status: {{device.status}}
-    </p>
-    <p>Temperature:{{device.temperature}}</p>
-    <p>Usage:</p>
-  </mat-card-content>
+  <div *ngIf="device">
+    <mat-card-header>
+      <mat-card-title>Details: {{device.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        Status: {{device.status}}
+      </p>
+      <p>Temperature:{{device.temperature}}</p>
+      <p>Usage:</p>
+    </mat-card-content>
+  </div>
+  <div *ngIf="!device">
+    Loading...
+  </div>
 </mat-card>

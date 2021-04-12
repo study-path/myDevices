@@ -9,7 +9,6 @@ const routes: Routes = [
   },
   {
     path: "dashboard",
-    pathMatch: 'full',
     loadChildren: () =>
       import("./modules/dashboard/dashboard.module").then(
         (mod) => mod.DashboardModule
@@ -17,7 +16,6 @@ const routes: Routes = [
   },
   {
     path: "devices",
-    pathMatch: 'full',
     loadChildren: () =>
       import("./modules/devices/devices.module").then(
         (mod) => mod.DevicesModule

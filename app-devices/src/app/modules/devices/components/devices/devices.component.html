@@ -1,2 +1,12 @@
-<app-search-device></app-search-device>
+<div fxLayoutAlign="space-between center">
+  <app-search-device fxFlex="80"></app-search-device>
+  <div>
+    <a mat-flat-button routerLink="add">
+      <span class="material-icons">
+        add_circle
+      </span>Add device
+    </a>
+  </div>
+</div>
+
 <app-device-list [devices]="devices"></app-device-list>

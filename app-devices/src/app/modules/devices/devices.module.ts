@@ -10,6 +10,7 @@ import { DeviceListModule } from '../device-list/device-list.module';
 import { DevicesComponent } from './components/devices/devices.component';
 import { SearchDeviceComponent } from './components/search-device/search-device.component';
 import { DevicesRoutingModule } from './devices-routing.module';
+import { AddDeviceComponent } from './components/add-device/add-device.component';
 
 const materialModules = [
   MatFormFieldModule,  
@@ -18,7 +19,7 @@ const materialModules = [
 ]
 
 @NgModule({
-  declarations: [DevicesComponent, SearchDeviceComponent],
+  declarations: [DevicesComponent, SearchDeviceComponent, AddDeviceComponent],
   imports: [
     CommonModule,
     DevicesRoutingModule,

@@ -3,6 +3,12 @@
     public enum DeviceType
     {
         Mobile,
-        Computer
+        Computer, 
+        SmartPlugs,
+        HomeSecurityCameras,
+        Thermostat,
+        SmartLighting,
+        SmartKitchenAppliances
+
     }
 }
