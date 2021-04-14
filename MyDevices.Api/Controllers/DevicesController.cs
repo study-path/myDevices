@@ -10,7 +10,7 @@ namespace MyDevices.Api.Controllers
     public class DevicesController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<DeviceViewModel> Get()
+        public IEnumerable<DeviceViewModel> Get(string criteria, DeviceStatus status)
         {
             return new DeviceViewModel[] {
               new DeviceViewModel

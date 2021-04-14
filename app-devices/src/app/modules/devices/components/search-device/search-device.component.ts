@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+
 
 @Component({
   selector: 'app-search-device',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-device.component.scss']
 })
 export class SearchDeviceComponent implements OnInit {
-
-  search!: string;
+  criteria!: string;
+  
+  @Output() search = new EventEmitter<string>();
 
   constructor() { }
 
@@ -15,7 +17,7 @@ export class SearchDeviceComponent implements OnInit {
   }
 
   cancel(){
-    this.search = "";
+    this.search.emit(this.criteria);
+    this.criteria = "";    
   }
-
 }

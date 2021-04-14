@@ -1,23 +1,25 @@
 @import 'src/styles/colors';
 
-.search {
-  background-color: $color-link-water;
-  height: 50px;
-  padding: 0 10px;
-}
-
-.div {
+.search-container {
   position: relative;
+
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 7px;
+  }
+  
+  .close-icon {
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    cursor: pointer;
+  }
+  
+  input {
+    padding:5px 30px;
+    width: 100%;
+    margin: 5px;
+  }
 }
 
-span {
-  position: absolute;
-  margin-left: 5px;
-  padding: 9px;
-}
-
-input {
-  padding:5px 30px;
-  width: 100%;
-  margin: 5px;
-}

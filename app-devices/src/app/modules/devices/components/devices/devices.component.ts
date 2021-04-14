@@ -18,8 +18,8 @@ export class DevicesComponent implements OnInit {
       .getDevices()
       .subscribe((devices: DeviceModel[]) => this.devices = devices);
   }
-
-  newDevice():void{
-
-  }
+  
+  search(str: string){
+    alert(str);
+  } 
 }

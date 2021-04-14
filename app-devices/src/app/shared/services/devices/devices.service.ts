@@ -15,8 +15,30 @@ export class DevicesService {
 
   constructor(private http: HttpClient) { }  
     
-  getDevices(status?: DeviceStatusEnum): Observable<DeviceModel[]> {   
-    return this.http.get<DeviceModel[]>(`${environment.myDeviceApiUrl}/api/devices`);
+  getDevices(status?: DeviceStatusEnum, criteria?: string): Observable<DeviceModel[]> {
+    debugger;
+    let statusParam;
+    if (status != null) {
+      statusParam = `status=${status}`;
+    }
+
+    let criteriaParam;
+    if (criteria != null) {
+      criteriaParam = `criteria=${criteria}`;
+    }
+
+    let url = `${environment.myDeviceApiUrl}/api/devices?`;
+    if (statusParam != null && criteriaParam != null) {
+      url += `${statusParam}&${criteriaParam}`;
+    }
+    else if (statusParam != null) {
+      url += statusParam;
+    }
+    else if (criteriaParam != null) {
+      url += criteriaParam;
+    }
+
+    return this.http.get<DeviceModel[]>(url);
   }
 
   getDeviceDetails(id: number):Observable<DeviceDetailsModel>{   
@@ -34,4 +56,5 @@ export class DevicesService {
   createDevice(data:any): Observable<any> {
     return this.http.post(`${environment.myDeviceApiUrl}/api/devices`, data);
   }
+
 }
