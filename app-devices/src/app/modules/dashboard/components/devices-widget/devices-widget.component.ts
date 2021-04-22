@@ -17,6 +17,7 @@ export class DevicesWidgetComponent implements OnInit {
   constructor(private devicesService: DevicesService) { }
 
   ngOnInit() {
+    debugger;
     this.devicesService
       .getDevices(this.status)
       .subscribe((devices: DeviceModel[]) => this.devices = devices);

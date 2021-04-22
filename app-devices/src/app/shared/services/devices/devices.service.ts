@@ -27,17 +27,16 @@ export class DevicesService {
       criteriaParam = `criteria=${criteria}`;
     }
 
-    let url = `${environment.myDeviceApiUrl}/api/devices?`;
+    let url = `${environment.myDeviceApiUrl}/api/devices`;
     if (statusParam != null && criteriaParam != null) {
-      url += `${statusParam}&${criteriaParam}`;
+      url += `?${statusParam}&${criteriaParam}`;
     }
     else if (statusParam != null) {
-      url += statusParam;
+      url += `?${statusParam}`;
     }
     else if (criteriaParam != null) {
-      url += criteriaParam;
+      url += `?${criteriaParam}`;
     }
-
     return this.http.get<DeviceModel[]>(url);
   }
 

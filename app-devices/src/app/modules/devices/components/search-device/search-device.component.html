@@ -1,5 +1,5 @@
 <div class="search-container" fxLayout="row">
   <mat-icon aria-hidden="false" class="search-icon">search</mat-icon>
-  <input type="text" [(ngModel)]="criteria" placeholder="Search">
+  <input matInput type="text" [(ngModel)]="criteria" placeholder="Search" (keydown.enter)="onSearch()">
   <mat-icon aria-hidden="false" class="close-icon" (click)="cancel()" *ngIf="criteria">close</mat-icon>
 </div>

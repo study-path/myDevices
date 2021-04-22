@@ -26,7 +26,6 @@ export class AddDeviceComponent implements OnInit {
   saveDevice(){
     const data = {
       name: this.device.name,
-      status: this.device.status,
       type: this.device.type
     };
 

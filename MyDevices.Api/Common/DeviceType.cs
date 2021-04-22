@@ -9,6 +9,5 @@
         Thermostat,
         SmartLighting,
         SmartKitchenAppliances
-
     }
 }

@@ -16,8 +16,11 @@ export class SearchDeviceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  cancel(){
-    this.search.emit(this.criteria);
+  cancel(){   
     this.criteria = "";    
+  }
+
+  onSearch(){
+    this.search.emit(this.criteria);
   }
 }

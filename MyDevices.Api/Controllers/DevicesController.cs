@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MyDevices.Api.Common;
 using MyDevices.Api.Controllers.ViewModels;
+using MyDevices.Api.Services;
+using MyDevices.Api.Services.Models;
 
 namespace MyDevices.Api.Controllers
 {
@@ -9,67 +11,33 @@ namespace MyDevices.Api.Controllers
     [ApiController]
     public class DevicesController : ControllerBase
     {
-        [HttpGet]
-        public IEnumerable<DeviceViewModel> Get(string criteria, DeviceStatus status)
+        private readonly IDevicesService devicesService;
+
+        public DevicesController(IDevicesService devicesService)
         {
-            return new DeviceViewModel[] {
-              new DeviceViewModel
-              {
-                  Id = 1,
-                  Name = "Device 1",
-                  Status = DeviceStatus.Online,
-                  Type = DeviceType.Computer
-              },
-              new DeviceViewModel
-              {
-                  Id = 2,
-                  Name = "Device 2",
-                  Status = DeviceStatus.Offline,
-                  Type = DeviceType.Mobile
-              },
-              new DeviceViewModel
-              {
-                  Id = 3,
-                  Name = "Device 3",
-                  Status = DeviceStatus.Online,
-                  Type = DeviceType.SmartKitchenAppliances
-              },
-              new DeviceViewModel
-              {
-                  Id = 4,
-                  Name = "Device 4",
-                  Status = DeviceStatus.Restarting,
-                  Type = DeviceType.Computer
-              },
-              new DeviceViewModel
-              {
-                  Id = 5,
-                  Name = "Device 5",
-                  Status = DeviceStatus.Maintenance,
-                  Type = DeviceType.Mobile
-              },
-              new DeviceViewModel
-              {
-                  Id = 6,
-                  Name = "Device 6",
-                  Status = DeviceStatus.Online,
-                  Type = DeviceType.Computer
-              },
-              new DeviceViewModel
-              {
-                  Id = 7,
-                  Name = "Device 7",
-                  Status = DeviceStatus.Maintenance,
-                  Type = DeviceType.SmartLighting
-              },
-              new DeviceViewModel
-              {
-                  Id = 8,
-                  Name = "Device 8",
-                  Status = DeviceStatus.Online,
-                  Type = DeviceType.Thermostat
-              }
-           };
+            this.devicesService = devicesService;
+        }
+
+
+        [HttpGet]
+        public IEnumerable<DeviceViewModel> Get(string criteria, DeviceStatus? status)
+        {
+            var devices = this.devicesService.GetAll(criteria, status);
+
+            var result = new List<DeviceViewModel>();
+
+            for(var i = 0; i < devices.Count; i++)
+            {
+                var device = devices[i];
+                var viewDevice = new DeviceViewModel();
+                viewDevice.Id = device.Id;
+                viewDevice.Name = device.Name;
+                viewDevice.Status = device.Status;
+                viewDevice.Type = device.Type;
+
+                result.Add(viewDevice);
+            }
+            return result;
         }
 
 
@@ -77,130 +45,68 @@ namespace MyDevices.Api.Controllers
         [Route("statuses")]
         public IEnumerable<DeviceStatusModelView> GetStatus()
         {
-            return new DeviceStatusModelView[]
+            var statuses = this.devicesService.GetStatuses();
+
+            var result = new List<DeviceStatusModelView>();
+
+
+            for (var i = 0; i < statuses.Count; i++)
             {
-                new DeviceStatusModelView
-                {
-                    Count = 1,
-                    Status = DeviceStatus.Maintenance
-                },
-                new DeviceStatusModelView
-                {
-                    Count = 2,
-                    Status = DeviceStatus.Online
-                },
-                new DeviceStatusModelView
-                {
-                    Count = 3,
-                    Status = DeviceStatus.Offline
-                },
-                new DeviceStatusModelView
-                {
-                    Count = 4,
-                    Status = DeviceStatus.Restarting
-                },
-            };
+                var status = statuses[i];
+                var viewStatus = new DeviceStatusModelView();
+                viewStatus.Count = status.Count;
+                viewStatus.Status = status.Status;
+                result.Add(viewStatus);
+            }
+            return result;            
         }
 
         [HttpGet]
         [Route("{id}/relatedDevices")]
         public IEnumerable<DeviceViewModel> GetRelatedDevices(int id)
         {
-            if (id == 1)
+            var relatedDevices = this.devicesService.GetRelatedDevices(id);
+
+            var result = new List<DeviceViewModel>();
+
+            for (var i = 0; i < relatedDevices.Count; i++)
             {
-                return new DeviceViewModel[]
-                    {
-                        new DeviceViewModel
-                        {
-                            Id = 1,
-                            Name = "Device 1",
-                            Status = DeviceStatus.Online,
-                            Type = DeviceType.Computer
-                        },
-                        new DeviceViewModel
-                        {
-                            Id = 2,
-                            Name = "Device 2",
-                            Status = DeviceStatus.Offline,
-                            Type = DeviceType.Computer
-                        },
-                    };
+                var device = relatedDevices[i];
+                var rDevice = new DeviceViewModel();
+                rDevice.Id = device.Id;
+                rDevice.Name = device.Name;
+                rDevice.Status = device.Status;
+                rDevice.Type = device.Type;
+
+                result.Add(rDevice);
             }
-            else if (id == 2)
-            {
-                return new DeviceViewModel[]
-                    {
-                        new DeviceViewModel
-                        {
-                            Id = 3,
-                            Name = "Device 3",
-                            Status = DeviceStatus.Offline,
-                            Type = DeviceType.Mobile,
-                        },
-                        new DeviceViewModel
-                        {
-                            Id = 4,
-                            Name = "Device 4",
-                            Status = DeviceStatus.Maintenance,
-                            Type = DeviceType.Mobile,
-                        }
-                    };
-            }
-            else
-            {
-                return new DeviceViewModel[]
-                    {
-                        new DeviceViewModel
-                        {
-                            Id = 5,
-                            Name = "Device 5",
-                            Status = DeviceStatus.Restarting,
-                            Type = DeviceType.SmartKitchenAppliances
-                        },
-                        new DeviceViewModel
-                        {
-                            Id = 6,
-                            Name = "Device 6",
-                            Status = DeviceStatus.Online,
-                            Type = DeviceType.Computer
-                        },
-                        new DeviceViewModel
-                        {
-                            Id = 7,
-                            Name = "Device 7",
-                            Status = DeviceStatus.Maintenance,
-                            Type = DeviceType.SmartLighting
-                        },
-                        new DeviceViewModel
-                        {
-                            Id = 8,
-                            Name = "Device 8",
-                            Status = DeviceStatus.Online,
-                            Type = DeviceType.Thermostat
-                        }
-                    };
-            }
+            return result;           
         }
 
         [HttpGet]
         [Route("{id}/details")]
         public DeviceDetailsViewModel  GetDeviceDetails(int id)
         {
-            return 
-                new DeviceDetailsViewModel
-                {
-                    Id = id,
-                    Name = "Device 1",
-                    Status = DeviceStatus.Online,
-                    Type = DeviceType.Computer,
-                    Temperature = 10
-                };            
+            var deviceDetails = this.devicesService.GetDeviceDetails(id);
+
+            var d = new DeviceDetailsViewModel();
+            d.Id = deviceDetails.Id;
+            d.Name = deviceDetails.Name;
+            d.Status = deviceDetails.Status;
+            d.Type = deviceDetails.Type;
+            d.Temperature = deviceDetails.Temperature;
+
+            return d;            
         }
 
         [HttpPost]
-        public int AddDevice()
+        public int AddDevice([FromBody] NewDeviceViewModel deviceViewModel)
         {
-            return 2;
+            var device = new NewDeviceModel();
+            device.Name = deviceViewModel.Name;            
+            device.Type = deviceViewModel.Type;
+
+            return this.devicesService.AddDevice(device);
         }
     }
 }

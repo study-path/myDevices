@@ -19,7 +19,10 @@ export class DevicesComponent implements OnInit {
       .subscribe((devices: DeviceModel[]) => this.devices = devices);
   }
   
-  search(str: string){
-    alert(str);
+  onSearchDevices(criteria: string){
+    alert(`From DeviceComponent:  ${criteria}`);
+    this.devicesService
+      .getDevices(undefined, criteria)
+      .subscribe((devices: DeviceModel[]) => this.devices = devices)
   } 
 }
